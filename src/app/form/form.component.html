@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="material-form">
+    <form [formGroup]="thoughtsForm" (submit)="share()">
+      <table>
+        <tr>
+          <td>
+            <mat-form-field appearance="fill" color="accent">
+              <mat-label>Type Here</mat-label>
+              <textarea
+                rows="4"
+                cols="50"
+                matInput
+                formControlName="thought"
+              ></textarea>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr *ngIf="invalidField('thought')">
+          <code class="error">Cannot be blank</code>
+        </tr>
+        <tr>
+          <td class="button-row">
+            <ng-content></ng-content>
+            <button
+              mat-raised-button
+              color="accent"
+              type="submit"
+              [disabled]="invalidForm()"
+            >
+              <mat-icon fontIcon="share"></mat-icon>
+              Share
+            </button>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>
